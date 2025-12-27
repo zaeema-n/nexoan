@@ -6,10 +6,10 @@ OpenGIN follows a microservices architecture with a clear separation of concerns
 
 ```mermaid
 graph TD
-    Client[Client App] -->|JSON/REST| IngestionAPI[Ingestion API (Ballerina)]
-    Client -->|JSON/REST| ReadAPI[Read API (Ballerina)]
+    Client[Client App] -->|JSON/REST| IngestionAPI["Ingestion API (Ballerina)"]
+    Client -->|JSON/REST| ReadAPI["Read API (Ballerina)"]
     
-    IngestionAPI -->|gRPC/Protobuf| CoreAPI[Core API (Go)]
+    IngestionAPI -->|gRPC/Protobuf| CoreAPI["Core API (Go)"]
     ReadAPI -->|gRPC/Protobuf| CoreAPI
     
     CoreAPI -->|Mongo Driver| MongoDB[(MongoDB)]
