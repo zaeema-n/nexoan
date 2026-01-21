@@ -14,13 +14,17 @@ const config = {
   tagline: 'Open General Information Network',
   favicon: 'img/opengin_blue.png',
 
+  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
+  future: {
+    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+  },
 
 
   // Set the production url of your site here
   url: 'https://LDFLK.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/OpenGIN/',
+  baseUrl: process.env.BASE_URL || '/OpenGIN/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
