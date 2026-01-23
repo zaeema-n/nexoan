@@ -3,7 +3,6 @@ package engine
 import (
 	"context"
 	"fmt"
-	commons "lk/datafoundation/core-api/commons"
 	dbcommons "lk/datafoundation/core-api/commons/db"
 	pb "lk/datafoundation/core-api/lk/datafoundation/core-api"
 	schema "lk/datafoundation/core-api/pkg/schema"
@@ -522,9 +521,20 @@ func (r *TabularAttributeResolver) ReadResolve(ctx context.Context, entityID, at
 		}
 	}
 
-	// Get the table name for this attribute
-	tableName := fmt.Sprintf("attr_%s_%s", commons.SanitizeIdentifier(entityID), commons.SanitizeIdentifier(attrName))
-	log.Printf("[TabularAttributeResolver.ReadResolve] tableName: %s", tableName)
+	// Look up the actual table name from entity_attributes table
+	// The table name is UUID-based and stored during create operation
+	var tableName string
+	err = repo.DB().QueryRowContext(ctx,
+		`SELECT table_name FROM entity_attributes WHERE entity_id = $1 AND attribute_name = $2`,
+		entityID, attrName).Scan(&tableName)
+	if err != nil {
+		return &Result{
+			Data:    nil,
+			Success: false,
+			Error:   fmt.Errorf("failed to find table for attribute %s of entity %s: %v", attrName, entityID, err),
+		}
+	}
+	log.Printf("[TabularAttributeResolver.ReadResolve] Found tableName: %s", tableName)
 
 	// Use the GetData method from the repository to retrieve data with filters and fields
 	anyData, err := repo.GetData(ctx, tableName, filters, fields...)

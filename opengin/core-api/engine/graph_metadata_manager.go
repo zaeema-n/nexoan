@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"strings"
 	"time"
 
 	"lk/datafoundation/core-api/commons"
@@ -441,12 +442,14 @@ func GetDatasetType(storageType storageinference.StorageType) string {
 // GenerateAttributeID generates a unique ID for an attribute
 func GenerateAttributeRelationshipID() string {
 	unique_id := uuid.New().String()
+	unique_id = strings.ReplaceAll(unique_id, "-", "") // Remove hyphens for database compatibility
 	return fmt.Sprintf("attr_rel_%s", unique_id)
 }
 
 func GenerateAttributeID() string {
 	// attribute name should be unique within an entity
 	unique_id := uuid.New().String()
+	unique_id = strings.ReplaceAll(unique_id, "-", "") // Remove hyphens for database compatibility
 	return fmt.Sprintf("attr_%s", unique_id)
 }
 

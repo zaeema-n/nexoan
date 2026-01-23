@@ -394,8 +394,9 @@ func isTypeCompatible(existingType, newType typeinference.DataType) bool {
 
 // handleTabularData processes tabular data attributes
 func (repo *PostgresRepository) HandleTabularData(ctx context.Context, entityID, attrName string, value *pb.TimeBasedValue, schemaInfo *schema.SchemaInfo) error {
-	// Generate table name - with 41 chars
+	// Generate table name - UUID without hyphens (32 chars) + prefix (5 chars) = 37 chars total
 	unique_id := uuid.New().String()
+	unique_id = strings.ReplaceAll(unique_id, "-", "") // Remove hyphens for PostgreSQL compatibility
 	tableName := fmt.Sprintf("attr_%s", unique_id)
 
 	// Convert schema to columns
