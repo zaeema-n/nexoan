@@ -15,14 +15,19 @@ Open General Information Network here after referred to as **OpenGIN** is an ope
 
 | Feature | Description |
 |--------|-------------|
-| Temporal Data | Native support for time-based values (startTime, endTime) for attributes and relationships. |
+| Temporal, Entity-Centric Model      | Models all data as Entities with time-aware values, preserving historical context and enabling timeline-based analysis. |
+| Intent-Aware Data Ingestion         | Captures semantic intent, metadata, and temporal information at ingestion time to improve discovery and retrieval.      |
+| Polyglot Storage Abstraction        | Seamlessly supports graph, document, and tabular storage while abstracting underlying storage complexity.               |
+| Advanced Discovery & Querying       | Enables complex, cross-dataset queries that respect relationships, hierarchies, and time.                               |
+| Ecosystem & Organizational Modeling | Supports modeling governments, organizations, businesses, and ecosystems as interconnected, evolving systems.           |
+| Historical & Structural Analysis    | Allows users to explore how entities and relationships change over time within and across systems.                      |
 | Graph Capabilities | Powerful relationship traversal and querying. |
 | Scalability | Microservices architecture allows independent scaling of components. |
 | Strict Contracts | Uses Protobuf for internal communication and OpenAPI for external REST APIs. |
 
 ## Getting Started
 
-Please see our [Getting Started](docs/docs/getting_started).
+Please see our [Getting Started Guide](docs/docs/getting_started).
 
 ## Contributing
 
