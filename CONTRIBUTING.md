@@ -105,8 +105,8 @@ We value all contributions and appreciate your effort to improve this project!
 
 ## Additional Resources
 
-- [See Issues](https://github.com/LDFLK/GI-SERVICE/issues)
-- [See API Documentation](README.md#api-endpoints)
+- [See Issues](https://github.com/LDFLK/OpenGIN/issues)
+- [See API Documentation](docs/docs/overview/architecture/api-layer-details.md)
 - [Getting Started](README.md#getting-started)
 
 ---
